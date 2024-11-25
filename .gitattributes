@@ -1,0 +1,5 @@
+* text=auto
+*.zsh text eol=lf
+*.zsh-theme text eol=lf
+/prompt_ryzshrc9k_setup text eol=lf
+/prompt_ryzshrc10k_setup text eol=lf
