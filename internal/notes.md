@@ -24,7 +24,7 @@ SHOW_ON_UPGLOB. how should it interact with RYZSHRC9K_${SEGMENT}_DISABLED_DIR_PA
 
 ---
 
-add `ryz10k upglob`; returns 0 on match and sets REPLY to the directory where match was found.
+add `r10k upglob`; returns 0 on match and sets REPLY to the directory where match was found.
 
 ---
 
@@ -76,7 +76,7 @@ emulate zsh -o prompt_percent -c 'print -P "%F{#ff0000}red%F{green}%B bold green
 
 ---
 
-add `ryz10k explain` that prints something like this:
+add `r10k explain` that prints something like this:
 
 ```text
 segment     icons meaning

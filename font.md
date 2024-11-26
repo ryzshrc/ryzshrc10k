@@ -10,7 +10,7 @@ systems.
 
 ## Automatic font installation
 
-If you are using iTerm2 or Termux, `ryz10k configure` can install the recommended font for you.
+If you are using iTerm2 or Termux, `r10k configure` can install the recommended font for you.
 Simply answer `Yes` when asked whether to install *Meslo Nerd Font*.
 
 If you are using a different terminal, proceed with manual font installation. 👇
@@ -29,7 +29,7 @@ If you are using a different terminal, proceed with manual font installation. �
 1. Double-click on each file and click "Install". This will make `MesloLGS NF` font available to all
    applications on your system.
 1. Configure your terminal to use this font:
-   - **iTerm2**: Type `ryz10k configure` and answer `Yes` when asked whether to install
+   - **iTerm2**: Type `r10k configure` and answer `Yes` when asked whether to install
      *Meslo Nerd Font*. Alternatively, open *iTerm2 → Preferences → Profiles → Text* and set *Font* to
      `MesloLGS NF`.
    - **Apple Terminal**: Open *Terminal → Preferences → Profiles → Text*, click *Change* under *Font*
@@ -59,7 +59,7 @@ If you are using a different terminal, proceed with manual font installation. �
    - **IntelliJ** (and other IDEs by Jet Brains): Open *IDE → Edit → Preferences → Editor →
      Color Scheme → Console Font*. Select *Use console font instead of the default* and set the font
      name to `MesloLGS NF`.
-   - **Termux**: Type `ryz10k configure` and answer `Yes` when asked whether to install
+   - **Termux**: Type `r10k configure` and answer `Yes` when asked whether to install
      *Meslo Nerd Font*.
    - **Blink**: Type `config`, go to *Appearance*, tap *Add a new font*, tap *Open Gallery*, select
      *MesloLGS NF.css*, tap *import* and type `exit` in the home view to reload the font.
@@ -168,7 +168,7 @@ If you are using a different terminal, proceed with manual font installation. �
      [basic.interface.font]
      value = "MesloLGS NF"
      ```
-1. Run `ryz10k configure` to generate a new `~/.ryz10k.zsh`. The old config may work
+1. Run `r10k configure` to generate a new `~/.r10k.zsh`. The old config may work
    incorrectly with the new font.
 
 _Using a different terminal and know how to set the font for it? Share your knowledge by sending a

@@ -166,7 +166,7 @@ function print_prompt() {
 
 function href() {
   local url=${${1//\%/%%}//\\/\\\\}
-  if (( _ryz9k_term_has_href )); then
+  if (( _r9k_term_has_href )); then
     print -r -- '%{\e]8;;'$url'\a%}'$url'%{\e]8;;\a%}'
   else
     print -r -- $url
@@ -256,7 +256,7 @@ function quit() {
   if (( force )); then
     flowing Ryzshrc10k configuration wizard has been aborted. To run it again, type:
     print -P ""
-    print -P "  %2Fryz10k%f %Bconfigure%b"
+    print -P "  %2Fr10k%f %Bconfigure%b"
     print -P ""
   else
     flowing                                                                        \
@@ -265,11 +265,11 @@ function quit() {
       To define an option that does nothing except for disabling Ryzshrc10k     \
       configuration wizard, type the following command:
     print -P ""
-    print -P "  %2Fecho%f %3F'RYZSHRC9K_DISABLE_CONFIGURATION_WIZARD=true'%f >>! $__ryz9k_zshrc_u"
+    print -P "  %2Fecho%f %3F'RYZSHRC9K_DISABLE_CONFIGURATION_WIZARD=true'%f >>! $__r9k_zshrc_u"
     print -P ""
     flowing To run Ryzshrc10k configuration wizard right now, type:
     print -P ""
-    print -P "  %2Fryz10k%f %Bconfigure%b"
+    print -P "  %2Fr10k%f %Bconfigure%b"
     print -P ""
   fi
   function quit() {}
@@ -314,12 +314,12 @@ function render_screen() {
       while true; do
         typeset -gi wizard_columns='get_columns()'
         typeset -gi wizard_lines=LINES
-        if (( wizard_columns < __ryz9k_wizard_columns )); then
+        if (( wizard_columns < __r9k_wizard_columns )); then
           clear
           flowing -c %1FNot enough horizontal space.%f
           print
           flowing Make terminal window %Bwider%b or press %BCtrl-C%b to abort Ryzshrc10k configuration wizard.
-        elif (( wizard_lines < __ryz9k_wizard_lines )); then
+        elif (( wizard_lines < __r9k_wizard_lines )); then
           clear
           flowing -c %1FNot enough vertical space.%f
           print
@@ -639,9 +639,9 @@ function ask_remove_font() {
   add_widget 0 print -P ""
   if (( protected )); then
     if (( $#fonts == 1 )); then
-      add_widget 0 flowing Please %Bdelete%b this file and run '%2Fryz10k%f %Bconfigure%b.'
+      add_widget 0 flowing Please %Bdelete%b this file and run '%2Fr10k%f %Bconfigure%b.'
     else
-      add_widget 0 flowing Please %Bdelete%b these files and run '%2Fryz10k%f %Bconfigure%b.'
+      add_widget 0 flowing Please %Bdelete%b these files and run '%2Fr10k%f %Bconfigure%b.'
     fi
     add_widget 0 print
     restore_screen
@@ -1594,11 +1594,11 @@ function ask_transient_prompt() {
 function ask_config_overwrite() {
   config_backup=
   config_backup_u=0
-  if [[ ! -e $__ryz9k_cfg_path ]]; then
+  if [[ ! -e $__r9k_cfg_path ]]; then
     return 0
   fi
   add_widget 0 flowing -c Ryzshrc10k config file already exists.
-  add_widget 0 flowing -c "%BOverwrite" "%b%2F${__ryz9k_cfg_path_u//\\/\\\\}%f%B?%b"
+  add_widget 0 flowing -c "%BOverwrite" "%b%2F${__r9k_cfg_path_u//\\/\\\\}%f%B?%b"
   add_widget 0 print -P ""
   add_widget 0 print -P "%B(y)  Yes.%b"
   add_widget 0 print -P ""
@@ -1615,10 +1615,10 @@ function ask_config_overwrite() {
         local tmpdir_u=/tmp
       fi
       if (( ! $+commands[mktemp] )) ||
-         ! config_backup=$(mktemp $tmpdir/$__ryz9k_cfg_basename.XXXXXXXXXX 2>/dev/null); then
-        config_backup=$tmpdir/$__ryz9k_cfg_basename.$EPOCHREALTIME
+         ! config_backup=$(mktemp $tmpdir/$__r9k_cfg_basename.XXXXXXXXXX 2>/dev/null); then
+        config_backup=$tmpdir/$__r9k_cfg_basename.$EPOCHREALTIME
       fi
-      cp $__ryz9k_cfg_path $config_backup || quit -c
+      cp $__r9k_cfg_path $config_backup || quit -c
       config_backup_u=$tmpdir_u/${(q-)config_backup:t}
     ;;
   esac
@@ -1643,23 +1643,23 @@ function ask_zshrc_edit() {
   [[ $instant_prompt == off ]] && zshrc_has_instant_prompt=1
   (( zshrc_has_cfg && zshrc_has_instant_prompt )) && return
 
-  add_widget 0 flowing -c %BApply changes to "%b%2F${__ryz9k_zshrc_u//\\/\\\\}%f%B?%b"
+  add_widget 0 flowing -c %BApply changes to "%b%2F${__r9k_zshrc_u//\\/\\\\}%f%B?%b"
   add_widget 0 print -P ""
   add_widget 1
   local modifiable=y
-  if [[ ! -w $__ryz9k_zd ]]; then
+  if [[ ! -w $__r9k_zd ]]; then
     modifiable=
-    add_widget 0 flowing -c %3FWARNING:%f %2F${__ryz9k_zd_u//\\/\\\\}%f %3Fis readonly.%f
+    add_widget 0 flowing -c %3FWARNING:%f %2F${__r9k_zd_u//\\/\\\\}%f %3Fis readonly.%f
     add_widget 0 print -P ""
-  elif [[ -e $__ryz9k_zshrc && ! -w $__ryz9k_zshrc ]]; then
+  elif [[ -e $__r9k_zshrc && ! -w $__r9k_zshrc ]]; then
     local -a stat
-    zstat -A stat +uid -- $__ryz9k_zshrc || quit -c
+    zstat -A stat +uid -- $__r9k_zshrc || quit -c
     if (( stat[1] == EUID )); then
-      add_widget 0 flowing -c %3FNOTE:%f %2F${__ryz9k_zshrc_u//\\/\\\\}%f %3Fis readonly.%f
+      add_widget 0 flowing -c %3FNOTE:%f %2F${__r9k_zshrc_u//\\/\\\\}%f %3Fis readonly.%f
     else
       modifiable=
       add_widget 0 flowing -c                                           \
-        %3FWARNING:%f %2F${__ryz9k_zshrc_u//\\/\\\\}%f %3Fis readonly and \
+        %3FWARNING:%f %2F${__r9k_zshrc_u//\\/\\\\}%f %3Fis readonly and \
         not owned by the user. Cannot modify it.%f
     fi
     add_widget 0 print -P ""
@@ -1691,7 +1691,7 @@ function ask_zshrc_edit() {
            ! zshrc_backup="$(mktemp $tmpdir/.zshrc.XXXXXXXXXX 2>/dev/null)"; then
           zshrc_backup=$tmpdir/.zshrc.$EPOCHREALTIME
         fi
-        cp -p $__ryz9k_zshrc $zshrc_backup                   || quit -c
+        cp -p $__r9k_zshrc $zshrc_backup                   || quit -c
         local -i writable=1
         if [[ ! -w $zshrc_backup ]]; then
           chmod u+w -- $zshrc_backup                       || quit -c
@@ -1707,7 +1707,7 @@ function ask_zshrc_edit() {
 }
 
 function generate_config() {
-  local base && base="$(<$__ryz9k_root_dir/config/ryz10k-${style//_/-}.zsh)" || return
+  local base && base="$(<$__r9k_root_dir/config/r10k-${style//_/-}.zsh)" || return
   local lines=("${(@f)base}")
 
   function sub() {
@@ -1933,7 +1933,7 @@ function generate_config() {
   (( transient_prompt )) && sub TRANSIENT_PROMPT always
 
   local header=${(%):-"# Generated by Ryzshrc10k configuration wizard on %D{%Y-%m-%d at %H:%M %Z}."}$'\n'
-  header+="# Based on ryzshrc/ryzshrc10k/config/ryz10k-${style//_/-}.zsh"
+  header+="# Based on ryzshrc/ryzshrc10k/config/r10k-${style//_/-}.zsh"
   if [[ $commands[sum] == ('/bin'|'/usr/bin'|'/usr/local/bin')'/sum' ]]; then
     local -a sum
     if sum=($(sum <<<${base//$'\r\n'/$'\n'} 2>/dev/null)) && (( $#sum == 2 )); then
@@ -1953,21 +1953,21 @@ function generate_config() {
     fi
   done
   header+=$line
-  header+=$'.\n# Type `ryz10k configure` to generate another config.\n#'
+  header+=$'.\n# Type `r10k configure` to generate another config.\n#'
 
-  command mkdir -p -- ${__ryz9k_cfg_path:h} || return
+  command mkdir -p -- ${__r9k_cfg_path:h} || return
 
-  if [[ -e $__ryz9k_cfg_path ]]; then
-    zf_rm -f -- $__ryz9k_cfg_path || return
+  if [[ -e $__r9k_cfg_path ]]; then
+    zf_rm -f -- $__r9k_cfg_path || return
   fi
-  print -lr -- "$header" "$lines[@]" >$__ryz9k_cfg_path
+  print -lr -- "$header" "$lines[@]" >$__r9k_cfg_path
 }
 
 function change_zshrc() {
   (( write_zshrc )) || return 0
 
-  local tmp=$__ryz9k_zshrc.${(%):-%n}.tmp.$$
-  [[ ! -e $__ryz9k_zshrc ]] || cp -p $__ryz9k_zshrc $tmp || return
+  local tmp=$__r9k_zshrc.${(%):-%n}.tmp.$$
+  [[ ! -e $__r9k_zshrc ]] || cp -p $__r9k_zshrc $tmp || return
 
   {
     local -i writable=1
@@ -1979,11 +1979,11 @@ function change_zshrc() {
     print -n >$tmp || return
 
     if (( !zshrc_has_instant_prompt )); then
-      >>$tmp print -r -- "# Enable Ryzshrc10k instant prompt. Should stay close to the top of ${(%)__ryz9k_zshrc_u}.
+      >>$tmp print -r -- "# Enable Ryzshrc10k instant prompt. Should stay close to the top of ${(%)__r9k_zshrc_u}.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r \"\${XDG_CACHE_HOME:-\$HOME/.cache}/ryz10k-instant-prompt-\${(%):-%n}.zsh\" ]]; then
-  source \"\${XDG_CACHE_HOME:-\$HOME/.cache}/ryz10k-instant-prompt-\${(%):-%n}.zsh\"
+if [[ -r \"\${XDG_CACHE_HOME:-\$HOME/.cache}/r10k-instant-prompt-\${(%):-%n}.zsh\" ]]; then
+  source \"\${XDG_CACHE_HOME:-\$HOME/.cache}/r10k-instant-prompt-\${(%):-%n}.zsh\"
 fi" || return
     fi
     if [[ -n $zshrc_content ]]; then
@@ -1992,20 +1992,20 @@ fi" || return
     fi
     if (( !zshrc_has_cfg )); then
       >>$tmp print -r -- "
-# To customize prompt, run \`ryz10k configure\` or edit ${(%)__ryz9k_cfg_path_u}.
-[[ ! -f ${(%)__ryz9k_cfg_path_u} ]] || source ${(%)__ryz9k_cfg_path_u}" || return
+# To customize prompt, run \`r10k configure\` or edit ${(%)__r9k_cfg_path_u}.
+[[ ! -f ${(%)__r9k_cfg_path_u} ]] || source ${(%)__r9k_cfg_path_u}" || return
     fi
     (( writable )) || chmod u-w -- $tmp || return
-    command mv -f -- $tmp $__ryz9k_zshrc || return
+    command mv -f -- $tmp $__r9k_zshrc || return
   } always {
     zf_rm -f -- $tmp
   }
 
   if [[ -n $zshrc_backup_u ]]; then
     print -rP ""
-    flowing +c See "%B${__ryz9k_zshrc_u//\\/\\\\}%b" changes:
+    flowing +c See "%B${__r9k_zshrc_u//\\/\\\\}%b" changes:
     print -rP  "
-  %2Fdiff%f %B$zshrc_backup_u%b %B$__ryz9k_zshrc_u%b"
+  %2Fdiff%f %B$zshrc_backup_u%b %B$__r9k_zshrc_u%b"
   fi
   return 0
 }
@@ -2013,31 +2013,31 @@ fi" || return
 function check_zshrc_integration() {
   typeset -g zshrc_content=
   typeset -gi zshrc_has_cfg=0 zshrc_has_instant_prompt=0
-  [[ -e $__ryz9k_zshrc ]] || return 0
-  zshrc_content="$(<$__ryz9k_zshrc)" || return
+  [[ -e $__r9k_zshrc ]] || return 0
+  zshrc_content="$(<$__r9k_zshrc)" || return
   local lines=(${(f)zshrc_content})
-  local f0=$__ryz9k_cfg_path_o
+  local f0=$__r9k_cfg_path_o
   local f1=${(q)f0}
   local f2=${(q-)f0}
   local f3=${(qq)f0}
   local f4=${(qqq)f0}
-  local g1=${${(q)__ryz9k_cfg_path_o}/#(#b)${(q)HOME}\//'~/'}
-  local h0='${ZDOTDIR:-~}/.ryz10k.zsh'
-  local h1='${ZDOTDIR:-$HOME}/.ryz10k.zsh'
-  local h2='"${ZDOTDIR:-$HOME}/.ryz10k.zsh"'
-  local h3='"${ZDOTDIR:-$HOME}"/.ryz10k.zsh'
-  local h4='${ZDOTDIR}/.ryz10k.zsh'
-  local h5='"${ZDOTDIR}/.ryz10k.zsh"'
-  local h6='"${ZDOTDIR}"/.ryz10k.zsh'
-  local h7='$ZDOTDIR/.ryz10k.zsh'
-  local h8='"$ZDOTDIR/.ryz10k.zsh"'
-  local h9='"$ZDOTDIR"/.ryz10k.zsh'
+  local g1=${${(q)__r9k_cfg_path_o}/#(#b)${(q)HOME}\//'~/'}
+  local h0='${ZDOTDIR:-~}/.r10k.zsh'
+  local h1='${ZDOTDIR:-$HOME}/.r10k.zsh'
+  local h2='"${ZDOTDIR:-$HOME}/.r10k.zsh"'
+  local h3='"${ZDOTDIR:-$HOME}"/.r10k.zsh'
+  local h4='${ZDOTDIR}/.r10k.zsh'
+  local h5='"${ZDOTDIR}/.r10k.zsh"'
+  local h6='"${ZDOTDIR}"/.r10k.zsh'
+  local h7='$ZDOTDIR/.r10k.zsh'
+  local h8='"$ZDOTDIR/.r10k.zsh"'
+  local h9='"$ZDOTDIR"/.r10k.zsh'
   local h10='$RYZSHRC9K_CONFIG_FILE'
   local h11='"$RYZSHRC9K_CONFIG_FILE"'
   if [[ -n ${(@M)lines:#(#b)[^#]#([^[:IDENT:]]|)source[[:space:]]##(|--[[:space:]]##)($f1|$f2|$f3|$f4|$g1|$h0|$h1|$h2|$h3|$h4|$h5|$h6|$h7|$h8|$h9|$h10|$h11)(|[[:space:]]*|'#'*)} ]]; then
     zshrc_has_cfg=1
   fi
-  local pre='${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh'
+  local pre='${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh'
   if [[ -n ${(@M)lines:#(#b)[^#]#([^[:IDENT:]]|)source[[:space:]]##($pre|\"$pre\")(|[[:space:]]*|'#'*)} ]]; then
     zshrc_has_instant_prompt=1
   fi
@@ -2046,24 +2046,24 @@ function check_zshrc_integration() {
 
 () {
   (( force )) && return
-  _ryz9k_can_configure -q || return 0
+  _r9k_can_configure -q || return 0
   local zshrc_content zshrc_has_cfg zshrc_has_instant_prompt
   check_zshrc_integration 2>/dev/null || return 0
   (( zshrc_has_cfg )) || return 0
-  [[ -s $__ryz9k_cfg_path ]] || return 0
+  [[ -s $__r9k_cfg_path ]] || return 0
   print -P ""
   flowing                                                                          \
-      Ryzshrc10k configuration file "($__ryz9k_cfg_path_u)" was not sourced. This \
+      Ryzshrc10k configuration file "($__r9k_cfg_path_u)" was not sourced. This \
       might have been caused by errors in zsh startup files, most likely in        \
-      $__ryz9k_zshrc_u. See above for any indication of such errors and fix them. If \
+      $__r9k_zshrc_u. See above for any indication of such errors and fix them. If \
       there are no errors, try running Ryzshrc10k configuration wizard:
   print -P ''
-  print -P '  %2Fryz10k%f %Bconfigure%b'
+  print -P '  %2Fr10k%f %Bconfigure%b'
   print -P ''
   flowing                                                                              \
       If you do nothing, you will see this message again when you start zsh. You can   \
       suppress it by defining %BRYZSHRC9K_DISABLE_CONFIGURATION_WIZARD=true%b in    \
-      $__ryz9k_zshrc_u.
+      $__r9k_zshrc_u.
   print -P ''
   return 1
 } || return
@@ -2080,9 +2080,9 @@ fi
 {  # always
 
 if (( force )); then
-  _ryz9k_can_configure || return
+  _r9k_can_configure || return
 else
-  _ryz9k_can_configure -q || return
+  _r9k_can_configure -q || return
 fi
 
 zmodload zsh/terminfo zsh/datetime || return
@@ -2196,9 +2196,9 @@ while true; do
     fi
   fi
 
-  _ryz9k_init_icons
+  _r9k_init_icons
   ask_icon_padding     || continue
-  _ryz9k_init_icons
+  _r9k_init_icons
 
   ask_style            || continue
   ask_charset          || continue
@@ -2228,12 +2228,12 @@ restore_screen
 if (( !in_z4h_wizard )); then
   print
 
-  flowing +c New config: "%U${__ryz9k_cfg_path_u//\\/\\\\}%u."
+  flowing +c New config: "%U${__r9k_cfg_path_u//\\/\\\\}%u."
   if [[ -n $config_backup ]]; then
     flowing +c Backup of the old config: "%U${config_backup_u//\\/\\\\}%u."
   fi
   if [[ -n $zshrc_backup ]]; then
-    flowing +c Backup of "%U${__ryz9k_zshrc_u//\\/\\\\}%u:" "%U${zshrc_backup_u//\\/\\\\}%u."
+    flowing +c Backup of "%U${__r9k_zshrc_u//\\/\\\\}%u:" "%U${zshrc_backup_u//\\/\\\\}%u."
   fi
 fi
 

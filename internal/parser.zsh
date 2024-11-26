@@ -1,4 +1,4 @@
-typeset -grA __ryz9k_pb_cmd_skip=(
+typeset -grA __r9k_pb_cmd_skip=(
   '}'         'always'  # handled specially
   '{'         ''
   '{'         ''
@@ -38,7 +38,7 @@ typeset -grA __ryz9k_pb_cmd_skip=(
   'foreach'   '\(*\)'
 )
 
-typeset -grA __ryz9k_pb_precommand=(
+typeset -grA __r9k_pb_precommand=(
   '-'         ''
   'builtin'   ''
   'command'   ''
@@ -58,7 +58,7 @@ typeset -grA __ryz9k_pb_precommand=(
   'ifne'      ''
 )
 
-typeset -grA __ryz9k_pb_redirect=(
+typeset -grA __r9k_pb_redirect=(
   '&>'   ''
   '>'    ''
   '>&'   ''
@@ -75,7 +75,7 @@ typeset -grA __ryz9k_pb_redirect=(
   '<<<'  ''
 )
 
-typeset -grA __ryz9k_pb_term=(
+typeset -grA __r9k_pb_term=(
   '|'  ''
   '||' ''
   ';'  ''
@@ -93,14 +93,14 @@ typeset -grA __ryz9k_pb_term=(
   '}'  ''  # handled specially
 )
 
-typeset -grA __ryz9k_pb_term_skip=(
+typeset -grA __r9k_pb_term_skip=(
   '('  '\)'
   ';;' '\)|esac'
   ';&' '\)|esac'
   ';|' '\)|esac'
 )
 
-# Usage: _ryz9k_parse_buffer <buffer> [token-limit]
+# Usage: _r9k_parse_buffer <buffer> [token-limit]
 #
 # Parses the specified command line buffer and pupulates array P9K_COMMANDS
 # with commands from it. Terminates early and returns 1 if there are more
@@ -137,13 +137,13 @@ typeset -grA __ryz9k_pb_term_skip=(
 #   ---------------
 #
 # More brokenness with non-standard options (ignore_braces, ignore_close_braces, etc.).
-function _ryz9k_parse_buffer() {
+function _r9k_parse_buffer() {
   [[ ${2:-0} == <-> ]] || return 2
 
   local rcquotes
   [[ -o rcquotes ]] && rcquotes=rcquotes
 
-  eval "$__ryz9k_intro"
+  eval "$__r9k_intro"
   setopt no_nomatch $rcquotes
 
   typeset -ga P9K_COMMANDS=()
@@ -235,7 +235,7 @@ function _ryz9k_parse_buffer() {
           fi
           ;&  # fall through
         t|p*)
-          if (( $+__ryz9k_pb_term[$token] )); then
+          if (( $+__r9k_pb_term[$token] )); then
             if [[ $token == '()' ]]; then
               state=
             else
@@ -244,7 +244,7 @@ function _ryz9k_parse_buffer() {
                 state=a
                 skip=always
               else
-                skip=$__ryz9k_pb_term_skip[$token]
+                skip=$__r9k_pb_term_skip[$token]
                 state=${skip:+s}
               fi
             fi
@@ -253,7 +253,7 @@ function _ryz9k_parse_buffer() {
           elif [[ $state == t ]]; then
             continue
           elif [[ $state == *x ]]; then
-            if (( $+__ryz9k_pb_redirect[$token] )); then
+            if (( $+__r9k_pb_redirect[$token] )); then
               prev=
               state[-1]=r
               continue
@@ -287,7 +287,7 @@ function _ryz9k_parse_buffer() {
           ;;
       esac
 
-      if (( $+__ryz9k_pb_redirect[${token#<0-255>}] )); then
+      if (( $+__r9k_pb_redirect[${token#<0-255>}] )); then
         state+=r
         continue
       fi
@@ -303,8 +303,8 @@ function _ryz9k_parse_buffer() {
 
       case $state in
         '')
-          if (( $+__ryz9k_pb_cmd_skip[$token] )); then
-            skip=$__ryz9k_pb_cmd_skip[$token]
+          if (( $+__r9k_pb_cmd_skip[$token] )); then
+            skip=$__r9k_pb_cmd_skip[$token]
             [[ $token == '}' ]] && state=a || state=${skip:+s}
             continue
           fi
@@ -364,10 +364,10 @@ function _ryz9k_parse_buffer() {
           ;;
       esac
 
-      if (( $+__ryz9k_pb_precommand[$token] )); then
+      if (( $+__r9k_pb_precommand[$token] )); then
         prev=
         state=p
-        skip=$__ryz9k_pb_precommand[$token]
+        skip=$__r9k_pb_precommand[$token]
         cmd+=$token$'\0'
       else
         state=t

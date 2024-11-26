@@ -1,9 +1,9 @@
 typeset -gA icons
 
-function _ryz9k_init_icons() {
+function _r9k_init_icons() {
   [[ -n ${RYZSHRC9K_MODE-} || ${langinfo[CODESET]} == (utf|UTF)(-|)8 ]] || local RYZSHRC9K_MODE=ascii
-  [[ $_ryz9k__icon_mode == $RYZSHRC9K_MODE/$RYZSHRC9K_LEGACY_ICON_SPACING/$RYZSHRC9K_ICON_PADDING ]] && return
-  typeset -g _ryz9k__icon_mode=$RYZSHRC9K_MODE/$RYZSHRC9K_LEGACY_ICON_SPACING/$RYZSHRC9K_ICON_PADDING
+  [[ $_r9k__icon_mode == $RYZSHRC9K_MODE/$RYZSHRC9K_LEGACY_ICON_SPACING/$RYZSHRC9K_ICON_PADDING ]] && return
+  typeset -g _r9k__icon_mode=$RYZSHRC9K_MODE/$RYZSHRC9K_LEGACY_ICON_SPACING/$RYZSHRC9K_ICON_PADDING
 
   if [[ $RYZSHRC9K_LEGACY_ICON_SPACING == true ]]; then
     local s=
@@ -1142,8 +1142,8 @@ function _ryz9k_init_icons() {
 
 # Sadly, this is a part of public API. Its use is emphatically discouraged.
 function print_icon() {
-  eval "$__ryz9k_intro"
-  _ryz9k_init_icons
+  eval "$__r9k_intro"
+  _r9k_init_icons
   local var=RYZSHRC9K_$1
   if (( $+parameters[$var] )); then
     echo -n - ${(P)var}
@@ -1158,8 +1158,8 @@ function print_icon() {
 #                 otherwise "print_icon" is used, which takes the users
 #                 overrides into account.
 function get_icon_names() {
-  eval "$__ryz9k_intro"
-  _ryz9k_init_icons
+  eval "$__r9k_intro"
+  _r9k_init_icons
   local key
   for key in ${(@kon)icons}; do
     echo -n - "RYZSHRC9K_$key: "

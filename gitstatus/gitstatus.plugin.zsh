@@ -662,7 +662,7 @@ function gitstatus_start"${1:-}"() {
 
         print -nru $req_fd -- $'}hello\x1f\x1e' || return
         local expected=$'}hello\x1f0\x1e' actual
-        if (( $+functions[ryz10k] )) && [[ ! -t 1 && ! -t 0 ]]; then
+        if (( $+functions[r10k] )) && [[ ! -t 1 && ! -t 0 ]]; then
           local -F deadline='EPOCHREALTIME + 4'
         else
           local -F deadline='1'
@@ -687,8 +687,8 @@ function gitstatus_start"${1:-}"() {
               exec 2>&$stderr_fd {stderr_fd}>&-
               stderr_fd=0
             fi
-            if (( $+functions[ryz10k] )); then
-              ryz10k clear-instant-prompt || return
+            if (( $+functions[r10k] )); then
+              r10k clear-instant-prompt || return
             fi
             if [[ $name == RYZSHRC9K ]]; then
               local label=ryzshrc10k
@@ -731,7 +731,7 @@ function gitstatus_start"${1:-}"() {
           local pair=${${(%):-%N}#_gitstatus_process_response_}
           local name=${pair%%-*}
           local fsuf=${pair#*-}
-          [[ $name == RYZSHRC9K && $fsuf == _ryz9k_ ]] && eval $__ryz9k_intro_base
+          [[ $name == RYZSHRC9K && $fsuf == _r9k_ ]] && eval $__r9k_intro_base
           if (( ARGC == 1 )); then
             _gitstatus_process_response$fsuf $name 0 ''
           else
@@ -773,7 +773,7 @@ function gitstatus_start"${1:-}"() {
     gitstatus_stop$fsuf $name
 
     setopt prompt_percent no_prompt_subst no_prompt_bang
-    (( $+functions[ryz10k] )) && ryz10k clear-instant-prompt
+    (( $+functions[r10k] )) && r10k clear-instant-prompt
     print -ru2  -- ''
     print -Pru2 -- '[%F{red}ERROR%f]: gitstatus failed to initialize.'
     print -ru2  -- ''

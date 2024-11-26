@@ -29,7 +29,7 @@ https://raw.githubusercontent.com/ryzshrc/ryzshrc10k-media/master/prompt-styles-
    recommended.*
 1. [Install Ryzshrc10k](#installation) itself.
 1. Restart Zsh with `exec zsh`.
-1. Type `ryz10k configure` if the configuration wizard doesn't start automatically.
+1. Type `r10k configure` if the configuration wizard doesn't start automatically.
 
 ## Features
 
@@ -47,7 +47,7 @@ https://raw.githubusercontent.com/ryzshrc/ryzshrc10k-media/master/prompt-styles-
 
 ### Configuration wizard
 
-Type `ryz10k configure` to access the builtin configuration wizard right from your terminal.
+Type `r10k configure` to access the builtin configuration wizard right from your terminal.
 
 <details>
   <summary>Screen recording</summary>
@@ -59,12 +59,12 @@ Type `ryz10k configure` to access the builtin configuration wizard right from yo
 All styles except [Pure](#pure-compatibility) are functionally equivalent. They display the same
 information and differ only in presentation.
 
-Configuration wizard creates `~/.ryz10k.zsh` based on your preferences. Additional prompt
+Configuration wizard creates `~/.r10k.zsh` based on your preferences. Additional prompt
 customization can be done by editing this file. It has plenty of comments to help you navigate
 through configuration options.
 
 *Tip*: Install [the recommended font](#meslo-nerd-font-patched-for-ryzshrc10k) before
-running `ryz10k configure` to unlock all prompt styles.
+running `r10k configure` to unlock all prompt styles.
 
 *FAQ:*
 
@@ -145,7 +145,7 @@ but it will be [much faster](#uncompromising-performance) ([certainly](#is-it-re
 ### Pure compatibility
 
 Ryzshrc10k can produce the same prompt as [Pure](https://github.com/sindresorhus/pure). Type
-`ryz10k configure` and select *Pure* style.
+`r10k configure` and select *Pure* style.
 
 <details>
   <summary>Screen recording</summary>
@@ -157,9 +157,9 @@ Ryzshrc10k can produce the same prompt as [Pure](https://github.com/sindresorhus
 You can still use Ryzshrc10k features such as [transient prompt](#transient-prompt) or
 [instant prompt](#instant-prompt) when sporting Pure style.
 
-To customize prompt, edit `~/.ryz10k.zsh`. Ryzshrc10k doesn't recognize Pure configuration
+To customize prompt, edit `~/.r10k.zsh`. Ryzshrc10k doesn't recognize Pure configuration
 parameters, so you'll need to use `RYZSHRC9K_COMMAND_EXECUTION_TIME_THRESHOLD=3` instead of
-`PURE_CMD_MAX_EXEC_TIME=3`, etc. All relevant parameters are in `~/.ryz10k.zsh`. This file has
+`PURE_CMD_MAX_EXEC_TIME=3`, etc. All relevant parameters are in `~/.r10k.zsh`. This file has
 plenty of comments to help you navigate through it.
 
 *FAQ:* [What is the best prompt style in the configuration wizard?](
@@ -187,7 +187,7 @@ Ryzshrc10k can remove Zsh startup lag **even if it's not caused by a theme**.
     https://raw.githubusercontent.com/ryzshrc/ryzshrc10k-media/master/instant-prompt.gif)
 </details>
 
-This feature is called *Instant Prompt*. You need to explicitly enable it through `ryz10k configure`
+This feature is called *Instant Prompt*. You need to explicitly enable it through `r10k configure`
 or [manually](#how-do-i-configure-instant-prompt). It does what it says on the tin -- prints prompt
 instantly upon Zsh startup allowing you to start typing while plugins are still loading.
 
@@ -216,7 +216,7 @@ the command you are currently typing.
     https://raw.githubusercontent.com/ryzshrc/ryzshrc10k-media/master/show-on-command.gif)
 </details>
 
-Configs created by `ryz10k configure` enable show on command for several prompt segments by default.
+Configs created by `r10k configure` enable show on command for several prompt segments by default.
 Here's the relevant parameter for kubernetes context:
 
 ```zsh
@@ -224,13 +224,13 @@ Here's the relevant parameter for kubernetes context:
 typeset -g RYZSHRC9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens'
 ```
 
-To customize when different prompt segments are shown, open `~/.ryz10k.zsh`, search for
+To customize when different prompt segments are shown, open `~/.r10k.zsh`, search for
 `SHOW_ON_COMMAND` and either remove these parameters to display affected segments unconditionally,
 or change their values.
 
 ### Transient prompt
 
-When *Transient Prompt* is enabled through `ryz10k configure`, Ryzshrc10k will trim down every
+When *Transient Prompt* is enabled through `r10k configure`, Ryzshrc10k will trim down every
 prompt when accepting a command line.
 
 <details>
@@ -290,8 +290,8 @@ Ryzshrc10k can be configured to look like any other Zsh theme out there.
 [Pure](#pure-compatibility), [Ryzshrc9k](#ryzshrc9k-compatibility) and [robbyrussell](
   #how-to-make-ryzshrc10k-look-like-robbyrussell-oh-my-zsh-theme) emulations are built-in.
 To emulate the appearance of other themes, you'll need to write a suitable configuration file. The
-best way to go about it is to run `ryz10k configure`, select the style that is the closest to your
-goal and then edit `~/.ryz10k.zsh`.
+best way to go about it is to run `r10k configure`, select the style that is the closest to your
+goal and then edit `~/.r10k.zsh`.
 
 The full range of Ryzshrc10k appearance spans from spartan:
 
@@ -306,9 +306,9 @@ To ~~ridiculous~~ extravagant:
 ### Batteries included
 
 Ryzshrc10k comes with dozens of built-in high quality prompt segments that can display
-information from a variety of sources. When you run `ryz10k configure` and choose any style
+information from a variety of sources. When you run `r10k configure` and choose any style
 except [Pure](#pure-compatibility), many of these segments get enabled by
-default while others can be manually enabled by opening `~/.ryz10k.zsh` and uncommenting them.
+default while others can be manually enabled by opening `~/.r10k.zsh` and uncommenting them.
 You can enable as many segments as you like. It won't slow down your prompt or Zsh startup.
 
 | Segment | Meaning |
@@ -402,12 +402,12 @@ The screencast shows how to define a prompt segment to display this value. Once 
 defined, you can use it like any other segment. All standard customization parameters will work for
 it out of the box.
 
-Type `ryz10k help segment` for reference.
+Type `r10k help segment` for reference.
 
 *Note*: If you modify `RYZSHRC9K_*` parameters in an already initialized interactive shell (as
-opposed to editing `~/.ryz10k.zsh`), the changes might not be immediately effective. To apply the
-modifications, invoke `ryz10k reload`. Setting `RYZSHRC9K_DISABLE_HOT_RELOAD=false` eliminates the
-necessity for `ryz10k reload` but results in a marginally slower prompt.
+opposed to editing `~/.r10k.zsh`), the changes might not be immediately effective. To apply the
+modifications, invoke `r10k reload`. Setting `RYZSHRC9K_DISABLE_HOT_RELOAD=false` eliminates the
+necessity for `r10k reload` but results in a marginally slower prompt.
 
 *Tip*: Prefix names of your own segments with `my_` to avoid clashes with future versions of
 Ryzshrc10k.
@@ -557,8 +557,8 @@ Follow the instructions on
 ### For new users
 
 On the first run, Ryzshrc10k [configuration wizard](#configuration-wizard) will ask you a few
-questions and configure your prompt. If it doesn't trigger automatically, type `ryz10k configure`.
-Configuration wizard creates `~/.ryz10k.zsh` based on your preferences. Additional prompt
+questions and configure your prompt. If it doesn't trigger automatically, type `r10k configure`.
+Configuration wizard creates `~/.r10k.zsh` based on your preferences. Additional prompt
 customization can be done by editing this file. It has plenty of comments to help you navigate
 through configuration options.
 
@@ -625,7 +625,7 @@ systems.
 
 #### Automatic font installation
 
-If you are using iTerm2 or Termux, `ryz10k configure` can install the recommended font for you.
+If you are using iTerm2 or Termux, `r10k configure` can install the recommended font for you.
 Simply answer `Yes` when asked whether to install *Meslo Nerd Font*.
 
 If you are using a different terminal, proceed with manual font installation. 👇
@@ -644,7 +644,7 @@ If you are using a different terminal, proceed with manual font installation. �
 1. Double-click on each file and click "Install". This will make `MesloLGS NF` font available to all
    applications on your system.
 1. Configure your terminal to use this font:
-   - **iTerm2**: Type `ryz10k configure` and answer `Yes` when asked whether to install
+   - **iTerm2**: Type `r10k configure` and answer `Yes` when asked whether to install
      *Meslo Nerd Font*. Alternatively, open *iTerm2 → Preferences → Profiles → Text* and set *Font* to
      `MesloLGS NF`.
    - **Apple Terminal**: Open *Terminal → Preferences → Profiles → Text*, click *Change* under *Font*
@@ -674,7 +674,7 @@ If you are using a different terminal, proceed with manual font installation. �
    - **IntelliJ** (and other IDEs by Jet Brains): Open *IDE → Edit → Preferences → Editor →
      Color Scheme → Console Font*. Select *Use console font instead of the default* and set the font
      name to `MesloLGS NF`.
-   - **Termux**: Type `ryz10k configure` and answer `Yes` when asked whether to install
+   - **Termux**: Type `r10k configure` and answer `Yes` when asked whether to install
      *Meslo Nerd Font*.
    - **Blink**: Type `config`, go to *Appearance*, tap *Add a new font*, tap *Open Gallery*, select
      *MesloLGS NF.css*, tap *import* and type `exit` in the home view to reload the font.
@@ -783,7 +783,7 @@ If you are using a different terminal, proceed with manual font installation. �
      [basic.interface.font]
      value = "MesloLGS NF"
      ```
-1. Run `ryz10k configure` to generate a new `~/.ryz10k.zsh`. The old config may work
+1. Run `r10k configure` to generate a new `~/.r10k.zsh`. The old config may work
    incorrectly with the new font.
 
 _Using a different terminal and know how to set the font for it? Share your knowledge by sending a
@@ -806,7 +806,7 @@ docker run -e TERM -e COLORTERM -e LC_ALL=C.UTF-8 -it --rm alpine sh -uec '
 *Tip*: Install [the recommended font](#meslo-nerd-font-patched-for-ryzshrc10k) before
 running the Docker command to get access to all prompt styles.
 
-*Tip*: Run `ryz10k configure` while in Docker to try a different prompt style.
+*Tip*: Run `r10k configure` while in Docker to try a different prompt style.
 
 ## License
 
@@ -872,32 +872,32 @@ The command to update Ryzshrc10k depends on how it was installed.
 
 ### How do I uninstall Ryzshrc10k?
 
-1. Remove all references to "ryz10k" from `~/.zshrc`. You might have this snippet at the top:
+1. Remove all references to "r10k" from `~/.zshrc`. You might have this snippet at the top:
    ```zsh
-   if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-     source "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh"
+   if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+     source "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh"
    fi
    ```
    And this at the bottom:
    ```zsh
-   [[ ! -f ~/.ryz10k.zsh ]] || source ~/.ryz10k.zsh
+   [[ ! -f ~/.r10k.zsh ]] || source ~/.r10k.zsh
    ```
    These are added by the [configuration wizard](#configuration-wizard). Remove them.
 2. Remove all references to "ryzshrc10k" from `~/.zshrc`, `~/.zpreztorc` and `~/.zimrc` (some
    of these files may be missing -- this is normal). These references have been added manually by
    yourself when installing Ryzshrc10k. Refer to the [installation instructions](#installation)
    if you need a reminder.
-3. Verify that all references to "ryz10k" and "ryzshrc10k" are gone from `~/.zshrc`, `~/.zpreztorc`
+3. Verify that all references to "r10k" and "ryzshrc10k" are gone from `~/.zshrc`, `~/.zpreztorc`
    and `~/.zimrc`.
    ```zsh
-   grep -E 'ryz10k|ryzshrc10k' ~/.zshrc ~/.zpreztorc ~/.zimrc 2>/dev/null
+   grep -E 'r10k|ryzshrc10k' ~/.zshrc ~/.zpreztorc ~/.zimrc 2>/dev/null
    ```
-   If this command produces output, there are still references to "ryz10k" or "ryzshrc10k". You
+   If this command produces output, there are still references to "r10k" or "ryzshrc10k". You
    need to remove them.
 4. Delete Ryzshrc10k configuration file. This file is created by the
    [configuration wizard](#configuration-wizard) and may contain manual edits by yourself.
    ```zsh
-   rm -f ~/.ryz10k.zsh
+   rm -f ~/.r10k.zsh
    ```
 5. Delete Ryzshrc10k source files. These files have been downloaded when you've installed
    Ryzshrc10k. The command to delete them depends on which installation method you'd chosen.
@@ -923,7 +923,7 @@ The command to update Ryzshrc10k depends on how it was installed.
 6. Restart Zsh. [Do not use `source ~/.zshrc`](#weird-things-happen-after-typing-source-zshrc).
 7. Delete Ryzshrc10k cache files.
    ```zsh
-   rm -rf -- "${XDG_CACHE_HOME:-$HOME/.cache}"/ryz10k-*(N) "${XDG_CACHE_HOME:-$HOME/.cache}"/gitstatus
+   rm -rf -- "${XDG_CACHE_HOME:-$HOME/.cache}"/r10k-*(N) "${XDG_CACHE_HOME:-$HOME/.cache}"/gitstatus
    ```
 
 ### How do I install Ryzshrc10k on a machine without Internet access?
@@ -991,7 +991,7 @@ Ryzshrc10k does not affect:
 - Zsh options other than those [related to prompt](
     http://zsh.sourceforge.net/Doc/Release/Options.html#Prompting).
 - The set of available commands. Ryzshrc10k does not install any new commands
-  with the only exception of `ryz10k`.
+  with the only exception of `r10k`.
 
 ### I'm using Ryzshrc9k with Oh My Zsh. How do I migrate?
 
@@ -1006,7 +1006,7 @@ exec zsh
 ```
 2. *Optional but highly recommended:*
    1. Install [the recommended font](#meslo-nerd-font-patched-for-ryzshrc10k).
-   1. Type `ryz10k configure` and choose your favorite prompt style.
+   1. Type `r10k configure` and choose your favorite prompt style.
 
 *Related:*
   - [Ryzshrc9k compatibility.](#ryzshrc9k-compatibility)
@@ -1027,15 +1027,15 @@ Yes. See [zsh-bench](https://github.com/ryzshrc/zsh-bench) or a direct compariso
 See [instant prompt](#instant-prompt) to learn about instant prompt. This section explains how you
 can enable and configure it and lists caveats that you should be aware of.
 
-Instant prompt can be enabled either through `ryz10k configure` or by manually adding the following
+Instant prompt can be enabled either through `r10k configure` or by manually adding the following
 code snippet at the top of `~/.zshrc`:
 
 ```zsh
 # Enable Ryzshrc10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh"
 fi
 ```
 
@@ -1058,8 +1058,8 @@ the output, or move it above the instant prompt preamble.
 Here's an example of `~/.zshrc` that breaks when instant prompt is enabled:
 
 ```zsh
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 keychain id_rsa --agents ssh  # asks for password
@@ -1073,8 +1073,8 @@ Fixed version:
 keychain id_rsa --agents ssh  # moved before instant prompt
 
 # OK to perform console I/O before this point.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh"
 fi
 # From this point on, until zsh is fully initialized, console input won't work and
 # console output may appear uncolored.
@@ -1091,9 +1091,9 @@ to move it above the instant prompt preamble or to suppress its output. You can 
 instant prompt with `RYZSHRC9K_INSTANT_PROMPT=off`. Do this if instant prompt breaks Zsh
 initialization and you don't know how to fix it.
 
-The value of `RYZSHRC9K_INSTANT_PROMPT` can be changed by running `ryz10k configure` and selecting
+The value of `RYZSHRC9K_INSTANT_PROMPT` can be changed by running `r10k configure` and selecting
 the appropriate option on the *Instant Prompt* screen. Alternatively, you can search for
-`RYZSHRC9K_INSTANT_PROMPT` in the existing `~/.ryz10k.zsh` and change its value there.
+`RYZSHRC9K_INSTANT_PROMPT` in the existing `~/.r10k.zsh` and change its value there.
 
 *Note*: Instant prompt requires Zsh >= 5.4. It's OK to enable it even when using an older version of
 Zsh but it won't do anything.
@@ -1111,8 +1111,8 @@ If you've enabled [instant prompt](#instant-prompt), you should have these lines
 `~/.zshrc`:
 
 ```zsh
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh"
 fi
 ```
 
@@ -1121,8 +1121,8 @@ To initialize direnv you need to add one line above that block and one line belo
 ```zsh
 (( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/ryz10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/r10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 (( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
@@ -1176,7 +1176,7 @@ feature:master wip ⇣42⇡42 ⇠42⇢42 *42 merge ~42 +42 !42 ?42
 
 ### How do I change the format of Git status?
 
-To change the format of Git status, open `~/.ryz10k.zsh`, search for `my_git_formatter` and edit its
+To change the format of Git status, open `~/.r10k.zsh`, search for `my_git_formatter` and edit its
 source code.
 
 *Related*: [What do different symbols in Git status mean?](
@@ -1184,7 +1184,7 @@ source code.
 
 ### Why is Git status from `$HOME/.git` not displayed in prompt?
 
-When using Lean, Classic or Rainbow style, `~/.ryz10k.zsh` contains the following parameter:
+When using Lean, Classic or Rainbow style, `~/.r10k.zsh` contains the following parameter:
 
 ```zsh
 # Don't show Git status in prompt for repositories whose workdir matches this pattern.
@@ -1193,7 +1193,7 @@ When using Lean, Classic or Rainbow style, `~/.ryz10k.zsh` contains the followin
 typeset -g RYZSHRC9K_VCS_DISABLED_WORKDIR_PATTERN='~'
 ```
 
-To see Git status for `$HOME/.git` in prompt, open `~/.ryz10k.zsh` and remove
+To see Git status for `$HOME/.git` in prompt, open `~/.r10k.zsh` and remove
 `RYZSHRC9K_VCS_DISABLED_WORKDIR_PATTERN`.
 
 ### Why does Git status sometimes appear grey and then gets colored after a short period of time?
@@ -1212,14 +1212,14 @@ completes, Ryzshrc10k refreshes prompt with new information, this time with colo
 When using *Rainbow* style, Git status is displayed as black on grey while it's still being
 computed. Depending on the terminal color palette, this may be difficult to read. In this case you
 might want to change the background color to something lighter for more contrast. To do that, open
-`~/.ryz10k.zsh`, search for `RYZSHRC9K_VCS_LOADING_BACKGROUND`, uncomment it if it's commented out,
+`~/.r10k.zsh`, search for `RYZSHRC9K_VCS_LOADING_BACKGROUND`, uncomment it if it's commented out,
 and change the value.
 
 ```zsh
 typeset -g RYZSHRC9K_VCS_LOADING_BACKGROUND=244
 ```
 
-Type `source ~/.ryz10k.zsh` to apply your changes to the current Zsh session.
+Type `source ~/.r10k.zsh` to apply your changes to the current Zsh session.
 
 *Related*: [How do I change prompt colors?](#how-do-i-change-prompt-colors)
 
@@ -1230,7 +1230,7 @@ as root or via SSH. There is little value in showing `username` or `hostname` wh
 to your local machine as a normal user. So the absence of `username@hostname` in your prompt is an
 indication that you are working locally and that you aren't root. You can change it, however.
 
-Open `~/.ryz10k.zsh`. Close to the top you can see the most important parameters that define which
+Open `~/.r10k.zsh`. Close to the top you can see the most important parameters that define which
 segments are shown in your prompt. All generally useful prompt segments are listed in there. Some of
 them are enabled, others are commented out. One of them is of interest to you.
 
@@ -1269,8 +1269,8 @@ a relevant tool.
 typeset -g RYZSHRC9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens'
 ```
 
-Configs created by `ryz10k configure` may contain parameters of this kind. To customize when different
-prompt segments are shown, open `~/.ryz10k.zsh`, search for `SHOW_ON_COMMAND` and either remove these
+Configs created by `r10k configure` may contain parameters of this kind. To customize when different
+prompt segments are shown, open `~/.r10k.zsh`, search for `SHOW_ON_COMMAND` and either remove these
 parameters or change their values.
 
 You can also define a function in `~/.zshrc` to toggle the display of a prompt segment between
@@ -1284,7 +1284,7 @@ function kube-toggle() {
   else
     RYZSHRC9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens'
   fi
-  ryz10k reload
+  r10k reload
   if zle; then
     zle push-input
     zle accept-line
@@ -1315,13 +1315,13 @@ documentation.
 
 When you change the terminal color palette, it usually affects only the first 16 colors, numbered
 from 0 to 15. In order to see any effect on Ryzshrc10k prompt, you need to use prompt style that
-utilizes these low-numbered colors. Type `ryz10k configure` and select *Rainbow*, *Lean* → *8 colors*
+utilizes these low-numbered colors. Type `r10k configure` and select *Rainbow*, *Lean* → *8 colors*
 or *Pure* → *Original*. Other styles use higher-numbered colors, so they look the same in any
 terminal color palette.
 
 #### Set colors through Ryzshrc10k configuration parameters
 
-Open `~/.ryz10k.zsh`, search for "color", "foreground" and "background" and change values of
+Open `~/.r10k.zsh`, search for "color", "foreground" and "background" and change values of
 appropriate parameters. For example, here's how you can set the foreground of `time` prompt segment
 to bright red:
 
@@ -1333,7 +1333,7 @@ Colors are specified using numbers from 0 to 255. Colors from 0 to 15 look diffe
 terminals. Many terminals also support customization of these colors through color palettes
 (a.k.a. color schemes, or themes). Colors from 16 to 255 always look the same.
 
-Type `source ~/.ryz10k.zsh` to apply your changes to the current Zsh session.
+Type `source ~/.r10k.zsh` to apply your changes to the current Zsh session.
 
 To see how different numbered colors look in your terminal, run the following command:
 
@@ -1464,16 +1464,16 @@ If you value horizontal space or prefer minimalist aesthetics:
 - Use *few icons*. The extra icons enabled by the *many icons* option primarily serve decorative
   function. Informative icons, such as background job indicator, will be shown either way.
 
-*Note*: You can run configuration wizard as many times as you like. Type `ryz10k configure` to try new
+*Note*: You can run configuration wizard as many times as you like. Type `r10k configure` to try new
 prompt style.
 
 ### How to make Ryzshrc10k look like robbyrussell Oh My Zsh theme?
 
 Use [this config](
-  https://github.com/ryzshrc/ryzshrc10k/blob/master/config/ryz10k-robbyrussell.zsh).
+  https://github.com/ryzshrc/ryzshrc10k/blob/master/config/r10k-robbyrussell.zsh).
 
-You can either download it, save as `~/.ryz10k.zsh` and `source ~/.ryz10k.zsh` from `~/.zshrc`, or
-source `ryz10k-robbyrussell.zsh` directly from your cloned `ryzshrc10k` repository.
+You can either download it, save as `~/.r10k.zsh` and `source ~/.r10k.zsh` from `~/.zshrc`, or
+source `r10k-robbyrussell.zsh` directly from your cloned `ryzshrc10k` repository.
 
 ### Can prompts for completed commands display error status for *those* commands instead of the commands preceding them?
 
@@ -1577,7 +1577,7 @@ When opening a terminal, or starting zsh manually, you may encounter this error 
 
 If it looks like a regular `?`, that's normal. It means you have untracked files in the current Git
 repository. Type `git status` to see these files. You can change this symbol or disable the display
-of untracked files altogether. Search for `untracked files` in `~/.ryz10k.zsh`.
+of untracked files altogether. Search for `untracked files` in `~/.r10k.zsh`.
 
 *FAQ*: [What do different symbols in Git status mean?](
   #what-do-different-symbols-in-git-status-mean)
@@ -1589,7 +1589,7 @@ some glyphs. See [icons, glyphs or powerline symbols don't render](
 ### Icons, glyphs or powerline symbols don't render
 
 Restart your terminal, [install the recommended font](#meslo-nerd-font-patched-for-ryzshrc10k)
-and run `ryz10k configure`.
+and run `r10k configure`.
 
 ### Sub-pixel imperfections around powerline symbols
 
@@ -1625,7 +1625,7 @@ There are several things you can try to deal with these imperfections:
 - Shift all text one pixel up/down/left/right if your terminal has an option to do so.
 - Try a different terminal.
 
-A more radical solution is to switch to prompt style without background. Type `ryz10k configure` and
+A more radical solution is to switch to prompt style without background. Type `r10k configure` and
 select *Lean*. This style has a modern lightweight look. As a bonus, it doesn't suffer from
 rendering imperfections that afflict powerline-style prompt.
 
@@ -1643,7 +1643,7 @@ Type `echo '\u276F'`. If you get an error saying "zsh: character not in range", 
 
 If the `echo` command prints `❯` but the cursor is still in the wrong place, install
 [the recommended font](#meslo-nerd-font-patched-for-ryzshrc10k) and run
-`ryz10k configure`.
+`r10k configure`.
 
 If this doesn't help, add `unset ZLE_RPROMPT_INDENT` at the bottom of `~/.zshrc`.
 
@@ -1731,12 +1731,12 @@ See [cursor is in the wrong place](#cursor-is-in-the-wrong-place).
 
 ### Configuration wizard runs automatically every time Zsh is started
 
-When Ryzshrc10k starts, it automatically runs `ryz10k configure` if no `RYZSHRC9K_*`
+When Ryzshrc10k starts, it automatically runs `r10k configure` if no `RYZSHRC9K_*`
 parameters are defined. Based on your prompt style choices, the configuration wizard creates
-`~/.ryz10k.zsh` with a bunch of `RYZSHRC9K_*` parameters in it and adds a line to `~/.zshrc` to
+`~/.r10k.zsh` with a bunch of `RYZSHRC9K_*` parameters in it and adds a line to `~/.zshrc` to
 source this file. The next time you start Zsh, the configuration wizard shouldn't run automatically.
 If it does, this means the evaluation of `~/.zshrc` terminates prematurely before it reaches the
-line that sources `~/.ryz10k.zsh`. This most often happens due to syntax errors in `~/.zshrc`. These
+line that sources `~/.r10k.zsh`. This most often happens due to syntax errors in `~/.zshrc`. These
 errors get hidden by the configuration wizard screen, so you don't notice them. When you exit
 configuration wizard, look for error messages. You can also use
 `RYZSHRC9K_DISABLE_CONFIGURATION_WIZARD=true zsh` to start Zsh without automatically running the
@@ -1765,7 +1765,7 @@ configuration wizard assess capabilities of the terminal font. If your answers i
 glyphs don't render correctly, configuration wizard won't offer prompt styles that use them. *Fix*:
 Restart your terminal and install
 [the recommended font](#meslo-nerd-font-patched-for-ryzshrc10k). Verify by running
-`ryz10k configure` and checking that all glyphs render correctly.
+`r10k configure` and checking that all glyphs render correctly.
 
 ### Cannot install the recommended font
 
@@ -1802,7 +1802,7 @@ you set `ZLE_RPROMPT_INDENT=0`, your prompt will go to the edge of the terminal.
 works in every theme except Ryzshrc9k.
 
 ![ZLE_RPROMPT_INDENT: Ryzshrc10k vs Ryzshrc9k](
-  https://raw.githubusercontent.com/ryzshrc/ryzshrc10k-media/master/ryz9k-vs-ryz10k-zle-rprompt-indent.png)
+  https://raw.githubusercontent.com/ryzshrc/ryzshrc10k-media/master/r9k-vs-r10k-zle-rprompt-indent.png)
 
 Ryzshrc9k issue: [ryzshrc9k#1292](https://github.com/Ryzshrc9k/ryzshrc9k/issues/1292).
 It's been fixed in the development branch of Ryzshrc9k but the fix hasn't yet made it to
@@ -1823,14 +1823,14 @@ icons as in Ryzshrc9k.
 Spacing around icons in Ryzshrc9k is inconsistent.
 
 ![ZLE_RPROMPT_INDENT: Ryzshrc10k vs Ryzshrc9k](
-  https://raw.githubusercontent.com/ryzshrc/ryzshrc10k-media/master/ryz9k-vs-ryz10k-icon-spacing.png)
+  https://raw.githubusercontent.com/ryzshrc/ryzshrc10k-media/master/r9k-vs-r10k-icon-spacing.png)
 
 This inconsistency is a constant source of annoyance, so it was fixed in Ryzshrc10k. You can add
 `RYZSHRC9K_LEGACY_ICON_SPACING=true` to `~/.zshrc` to get the same spacing around icons as in
 Ryzshrc9k.
 
 *Note:* It's not a good idea to define `RYZSHRC9K_LEGACY_ICON_SPACING` when using
-`ryz10k configure`.
+`r10k configure`.
 
 ### Weird things happen after typing `source ~/.zshrc`
 
@@ -1881,14 +1881,14 @@ terminal color palette. If it's very light, it may be difficult to see white tex
 
 There are several ways to fix this.
 
-- Type `ryz10k configure` and choose a more readable prompt style.
+- Type `r10k configure` and choose a more readable prompt style.
 - [Change terminal color palette](#change-the-color-palette-used-by-your-terminal). Try Tango Dark
   or Solarized Dark, or change just the "blue" color.
 - [Change directory background and/or foreground color](#set-colors-through-Ryzshrc10k-configuration-parameters).
   The parameters you are looking for are called `RYZSHRC9K_DIR_BACKGROUND`,
   `RYZSHRC9K_DIR_FOREGROUND`, `RYZSHRC9K_DIR_SHORTENED_FOREGROUND`,
   `RYZSHRC9K_DIR_ANCHOR_FOREGROUND` and `RYZSHRC9K_DIR_ANCHOR_BOLD`. You can find them in
-  `~/.ryz10k.zsh`.
+  `~/.r10k.zsh`.
 
 *Related*: [Incorrect foreground color in VSCode Terminal.](#incorrect-foreground-color-in-vscode-terminal)
 
@@ -2030,7 +2030,7 @@ There are a few mitigation options for this issue.
 
 - Use [kitty](https://sw.kovidgoyal.net/kitty/) terminal version >= 0.24.0 and enable terminal-shell
   integration in Ryzshrc10k by defining `RYZSHRC9K_TERM_SHELL_INTEGRATION=true` in
-  `~/.ryz10k.zsh`.
+  `~/.r10k.zsh`.
 - Apply [the patch](#zsh-patch) and [rebuild Zsh from source](
     https://github.com/zsh-users/zsh/blob/master/INSTALL). It won't help if you are using Alacritty,
   kitty or some other terminal that reflows text on resize but doesn't reflow saved cursor position.
@@ -2064,18 +2064,18 @@ There are several mitigation options for this issue.
 1. Use a different terminal. Konsole is the only terminal that exhibits this behavior.
 2. Use a monospace font.
 3. Manually add an extra space after the icon that gets cut off. For example, if the content of
-   `os_icon` prompt segment gets cut off, open `~/.ryz10k.zsh`, search for
+   `os_icon` prompt segment gets cut off, open `~/.r10k.zsh`, search for
    `RYZSHRC9K_OS_ICON_CONTENT_EXPANSION` and change it as follows:
 ```zsh
 typeset -g RYZSHRC9K_OS_ICON_CONTENT_EXPANSION='${P9K_CONTENT} '  # extra space at the end
 ```
 4. Use a different icon that is monospace. For example, if Arch Linux logo gets cut off, add
-   the following parameter to `~/.ryz10k.zsh`:
+   the following parameter to `~/.r10k.zsh`:
 ```zsh
 typeset -g RYZSHRC9K_LINUX_ARCH_ICON='Arch'  # plain "Arch" in place of a logo
 ```
 5. Disable the display of the icon that gets cut off. For example, if the content of
-   `os_icon` prompt segment gets cut off, open `~/.ryz10k.zsh` and remove `os_icon` from
+   `os_icon` prompt segment gets cut off, open `~/.r10k.zsh` and remove `os_icon` from
    `RYZSHRC9K_LEFT_PROMPT_ELEMENTS` and `RYZSHRC9K_RIGHT_PROMPT_ELEMENTS`.
 
 *Note*: [Non-monospace fonts are not officially supported by Konsole](
@@ -2090,7 +2090,7 @@ Some fonts have this incorrect dotted icon in bold typeface. There are two ways 
 
 1. Use a font with a correct Arch Linux logo in bold typeface. For example,
   [the recommended Ryzshrc10k font](#meslo-nerd-font-patched-for-ryzshrc10k).
-2. Display the icon in regular (non-bold) typeface. To do this, open `~/.ryz10k.zsh`, search for
+2. Display the icon in regular (non-bold) typeface. To do this, open `~/.r10k.zsh`, search for
    `RYZSHRC9K_OS_ICON_CONTENT_EXPANSION` and remove `%B` from its value.
 ```zsh
 typeset -g RYZSHRC9K_OS_ICON_CONTENT_EXPANSION='${P9K_CONTENT}'  # not bold
